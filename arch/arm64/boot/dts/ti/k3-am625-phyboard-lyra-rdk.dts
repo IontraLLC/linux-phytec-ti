@@ -99,7 +99,7 @@
 	leds {
 		compatible = "gpio-leds";
 		pinctrl-names = "default";
-		pinctrl-0 = <&leds_pins_default>, <&user_leds_pins_default>;
+		pinctrl-0 = <&leds_pins_default>, <&gateway_pins_default>, <&user_leds_pins_default>;
 
 		led-1 {
 			gpios = <&main_gpio0 32 GPIO_ACTIVE_HIGH>;
@@ -150,6 +150,12 @@
 	gpio_keys_pins_default: gpio-keys-pins-default {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x1d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
+		>;
+	};
+
+	gateway_pins_default: gateway-pins-default {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x094, PIN_OUTPUT|PIN_INPUT, 7) /* (N20) GPMC0_BE1n.GPIO0_36 */
 		>;
 	};
 
