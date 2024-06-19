@@ -196,8 +196,21 @@
 };
 
 &sdhci1 {
+    /*
+       vcc_3v3_mmc and vddshv5_sdio are controlled by tps65219.
+
+       On PhyCore AM62 rev0 tps65219 is not present and tps65219 init fails on rev0 board.
+       Due to this SD card initialization is skipped.
+
+       We observe below dependancy on tps65219 is not needed for operation
+       of SD card. Likely default state of tps65219 on rev1 is fine for SD card.
+
+       Hence we comment below lines so that the same dts file works on rev0 and rev1 SOM
+     */
+    /*
     vmmc-supply = <&vcc_3v3_mmc>;
     vqmmc-supply = <&vddshv5_sdio>;
+     */
     pinctrl-names = "default";
     pinctrl-0 = <&main_mmc1_pins_default>;
     ti,driver-strength-ohm = <50>;
